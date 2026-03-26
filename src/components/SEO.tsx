@@ -56,6 +56,7 @@ const SEO = ({
       <meta name="author" content="LankaEVPlus" />
       <meta name="theme-color" content="#00FF88" />
       <meta name="robots" content="index, follow" />
+      
 
       {/* Open Graph tags */}
       <meta property="og:title" content={siteTitle} />
