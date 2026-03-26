@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Section from '../components/ui/Section'
 import SEO from '../components/SEO'
 import { projectApi, Project } from '../api/projects'
+import { APP_NAME, SITE_URL } from '../lib/constants'
 
 const ProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>()
@@ -70,6 +71,19 @@ const ProjectDetail = () => {
         title={project.title}
         description={project.description || `${project.systemSize} ${project.systemType} solar installation in ${project.location}`}
         keywords={`solar project, ${project.systemType}, ${project.location}, solar installation`}
+        structuredData={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: project.title,
+          description: project.description,
+          serviceType: project.systemType || 'Solar installation',
+          provider: {
+            '@type': 'Organization',
+            name: APP_NAME,
+            url: SITE_URL,
+          },
+          areaServed: project.location,
+        }}
       />
       
       {/* Hero Section */}

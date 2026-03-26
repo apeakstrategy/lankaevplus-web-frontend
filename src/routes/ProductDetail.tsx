@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Button from '../components/ui/Button'
 import SEO from '../components/SEO'
+import { APP_NAME } from '../lib/constants'
 import { productApi, type Product } from '../api/products'
 import { useCart } from '../contexts/CartContext'
 
@@ -151,6 +152,27 @@ const ProductDetail = () => {
         title={product.name}
         description={product.description || `${product.name} - High quality solar product`}
         keywords={`${product.name}, solar products, ${product.category || 'solar'}`}
+        structuredData={{
+          '@context': 'https://schema.org',
+          '@type': 'Product',
+          name: product.name,
+          description: product.description || product.name,
+          sku: product.sku,
+          brand: {
+            '@type': 'Brand',
+            name: APP_NAME,
+          },
+          image: product.imageUrl ? [product.imageUrl] : undefined,
+          offers: {
+            '@type': 'Offer',
+            priceCurrency: 'LKR',
+            price: product.price,
+            availability:
+              product.stock > 0
+                ? 'https://schema.org/InStock'
+                : 'https://schema.org/OutOfStock',
+          },
+        }}
       />
       
       {/* Hero Section */}
