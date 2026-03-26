@@ -6,6 +6,8 @@ import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
 import WhatsAppButton from './components/ui/WhatsAppButton'
 import ScrollToTop from './components/ScrollToTop'
+import PageTracker from './components/PageTracker'
+import SEO from './components/SEO'
 
 // Lazy load routes for better performance
 const Home = lazy(() => import('./routes/Home'))
@@ -57,6 +59,8 @@ function App() {
     <AuthProvider>
       <CartProvider>
         <BrowserRouter>
+          <PageTracker />
+          <SEO />
           <ScrollToTop />
           <a 
             href="#main-content" 
