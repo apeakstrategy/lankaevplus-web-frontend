@@ -218,6 +218,7 @@ const OrderSuccess = () => {
                 </div>
               </div>
             </motion.div>
+          </div>
 
           <motion.div
             className="flex flex-col sm:flex-row gap-4 justify-center"
