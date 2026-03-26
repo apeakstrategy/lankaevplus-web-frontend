@@ -212,7 +212,7 @@ const Footer = () => {
                 </div>
               </a>
               <a 
-                href="tel:+94112345678" 
+                href="tel:+94704323391" 
                 className="flex items-center gap-2 sm:gap-3 text-dark-400 hover:text-white transition-colors group"
               >
                 <div className="w-9 h-9 sm:w-10 sm:h-10 bg-dark-800 rounded-lg flex items-center justify-center group-hover:bg-dark-700 transition-colors flex-shrink-0">
