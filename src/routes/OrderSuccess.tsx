@@ -239,7 +239,6 @@ const OrderSuccess = () => {
                 </Button>
               </Link>
             </motion.div>
-          </div>
         </div>
       </section>
     </>
