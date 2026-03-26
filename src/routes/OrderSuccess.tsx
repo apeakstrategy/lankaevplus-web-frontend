@@ -198,7 +198,7 @@ const OrderSuccess = () => {
               </div>
             </motion.div>
 
-            <motion.div
+                        <motion.div
               className="bg-primary-500/10 border border-primary-500/30 rounded-xl p-5 mb-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -219,29 +219,30 @@ const OrderSuccess = () => {
               </div>
             </motion.div>
 
-          <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            <Button
-              variant="primary"
-              size="lg"
-              onClick={() => navigate('/chargers')}
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
             >
-              Continue Shopping
-            </Button>
-            <Link to="/track-order">
-              <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                Track Order
+              <Button
+                variant="primary"
+                size="lg"
+                onClick={() => navigate('/chargers')}
+              >
+                Continue Shopping
               </Button>
-            </Link>
-          </motion.div>
+              <Link to="/track-order">
+                <Button variant="outline" size="lg" className="w-full sm:w-auto">
+                  Track Order
+                </Button>
+              </Link>
+            </motion.div>
+          </div>
         </div>
       </section>
     </>
   )
 }
 
-export default OrderSuccess
+export default OrderSuccess;
