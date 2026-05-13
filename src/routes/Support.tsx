@@ -23,6 +23,7 @@ const Support = () => {
       category: 'App',
       readTime: '5 min',
       icon: '📱',
+      link: '/app-support',
     },
     {
       id: 'scooter-maintenance',
@@ -200,30 +201,52 @@ const Support = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {guides.map((guide, index) => (
-                  <motion.div
-                    key={guide.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.05 }}
-                    className="bg-dark-900 border border-white/5 p-6 hover:border-primary-500/30 transition-colors cursor-pointer group"
-                  >
-                    <div className="text-4xl mb-4">{guide.icon}</div>
-                    <span className="text-xs font-medium uppercase tracking-wider text-primary-400 mb-2 block">
-                      {guide.category}
-                    </span>
-                    <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-primary-400 transition-colors">
-                      {guide.title}
-                    </h3>
-                    <p className="text-dark-400 text-sm mb-4">{guide.description}</p>
-                    <div className="flex items-center justify-between">
-                      <span className="text-dark-500 text-xs">{guide.readTime} read</span>
-                      <svg className="w-5 h-5 text-dark-500 group-hover:text-primary-400 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
-                  </motion.div>
-                ))}
+                {guides.map((guide, index) => {
+                  const cardContent = (
+                    <>
+                      <div className="text-4xl mb-4">{guide.icon}</div>
+                      <span className="text-xs font-medium uppercase tracking-wider text-primary-400 mb-2 block">
+                        {guide.category}
+                      </span>
+                      <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-primary-400 transition-colors">
+                        {guide.title}
+                      </h3>
+                      <p className="text-dark-400 text-sm mb-4">{guide.description}</p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-dark-500 text-xs">{guide.readTime} read</span>
+                        <svg className="w-5 h-5 text-dark-500 group-hover:text-primary-400 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
+                    </>
+                  )
+
+                  return guide.link ? (
+                    <motion.div
+                      key={guide.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.05 }}
+                    >
+                      <Link
+                        to={guide.link}
+                        className="block bg-dark-900 border border-white/5 p-6 hover:border-primary-500/30 transition-colors cursor-pointer group h-full"
+                      >
+                        {cardContent}
+                      </Link>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key={guide.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.05 }}
+                      className="bg-dark-900 border border-white/5 p-6 hover:border-primary-500/30 transition-colors cursor-pointer group"
+                    >
+                      {cardContent}
+                    </motion.div>
+                  )
+                })}
               </div>
             </motion.div>
           )}
