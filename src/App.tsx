@@ -36,6 +36,7 @@ const Terms = lazy(() => import('./routes/Terms'))
 const DeleteAccount = lazy(() => import('./routes/DeleteAccount'))
 const ReturnPolicy = lazy(() => import('./routes/ReturnPolicy'))
 const ComingSoon = lazy(() => import('./routes/ComingSoon'))
+const AppSupport = lazy(() => import('./routes/AppSupport'))
 
 // Loading fallback component
 const LoadingFallback = () => (
@@ -116,6 +117,7 @@ function App() {
                 
                 {/* Misc */}
                 <Route path="/coming-soon" element={<ComingSoon />} />
+                <Route path="/app-support" element={<AppSupport />} />
                 
                 {/* Legacy redirects */}
                 <Route path="/shop" element={<Navigate to="/chargers" replace />} />
