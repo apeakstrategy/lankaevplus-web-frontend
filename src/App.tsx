@@ -33,8 +33,10 @@ const Account = lazy(() => import('./routes/Account'))
 const TrackOrder = lazy(() => import('./routes/TrackOrder'))
 const Privacy = lazy(() => import('./routes/Privacy'))
 const Terms = lazy(() => import('./routes/Terms'))
+const DeleteAccount = lazy(() => import('./routes/DeleteAccount'))
 const ReturnPolicy = lazy(() => import('./routes/ReturnPolicy'))
 const ComingSoon = lazy(() => import('./routes/ComingSoon'))
+const AppSupport = lazy(() => import('./routes/AppSupport'))
 
 // Loading fallback component
 const LoadingFallback = () => (
@@ -110,10 +112,12 @@ function App() {
                 {/* Legal */}
                 <Route path="/privacy" element={<Privacy />} />
                 <Route path="/terms" element={<Terms />} />
+                <Route path="/delete-account" element={<DeleteAccount />} />
                 <Route path="/returns" element={<ReturnPolicy />} />
                 
                 {/* Misc */}
                 <Route path="/coming-soon" element={<ComingSoon />} />
+                <Route path="/app-support" element={<AppSupport />} />
                 
                 {/* Legacy redirects */}
                 <Route path="/shop" element={<Navigate to="/chargers" replace />} />

@@ -1,4 +1,10 @@
 User-agent: *
-Allow: /
-
+Disallow: /cart
+Disallow: /checkout
+Disallow: /payment
+Disallow: /login
+Disallow: /register
+Disallow: /account
+Disallow: /track-order
+Disallow: /order-success
 Sitemap: https://lankaevplus.com/sitemap.xml

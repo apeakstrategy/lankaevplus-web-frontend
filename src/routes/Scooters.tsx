@@ -49,62 +49,6 @@ const Scooters = () => {
     })
   }
 
-  // Demo scooters for when no products exist in DB
-  const demoScooters = [
-    {
-      id: 'urban-cruiser',
-      name: 'Urban Cruiser',
-      tagline: 'City Commuter',
-      price: 450000,
-      specs: {
-        range: '80 km',
-        topSpeed: '45 km/h',
-        battery: '60V 30Ah',
-        chargeTime: '4-5 hours',
-        motor: '1000W',
-        weight: '58 kg',
-      },
-      features: ['LED Headlight', 'Digital Display', 'USB Charging', 'Anti-theft Alarm'],
-      image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
-      color: 'ev',
-    },
-    {
-      id: 'sport-rider',
-      name: 'Sport Rider Pro',
-      tagline: 'Performance Edition',
-      price: 650000,
-      specs: {
-        range: '100 km',
-        topSpeed: '60 km/h',
-        battery: '72V 40Ah',
-        chargeTime: '5-6 hours',
-        motor: '2000W',
-        weight: '72 kg',
-      },
-      features: ['Dual Suspension', 'Disc Brakes', 'Cruise Control', 'Regenerative Braking'],
-      image: 'https://images.unsplash.com/photo-1558618047-f4b511aae7b0?w=800&q=80',
-      color: 'primary',
-    },
-    {
-      id: 'cargo-max',
-      name: 'Cargo Max',
-      tagline: 'Delivery & Utility',
-      price: 550000,
-      specs: {
-        range: '70 km',
-        topSpeed: '40 km/h',
-        battery: '60V 35Ah',
-        chargeTime: '5-6 hours',
-        motor: '1200W',
-        weight: '85 kg',
-      },
-      features: ['Large Cargo Box', 'Heavy Duty Suspension', 'Flat Deck', 'Extra Storage'],
-      image: 'https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=800&q=80',
-      color: 'amber',
-    },
-  ]
-
-  // Use demo data if no products from API
   const displayScooters = scooters.length > 0 ? scooters : null
 
   return (
@@ -309,104 +253,27 @@ const Scooters = () => {
         </section>
       )}
 
-      {/* Demo Scooter Models (shown when no products from API) */}
+      {/* Empty State (shown when no products from API) */}
       {!isLoading && !error && (!displayScooters || displayScooters.length === 0) && (
-        <section className="py-24 bg-dark-950">
-          <div className="max-w-[1400px] mx-auto px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <span className="inline-flex items-center gap-2 px-3 py-1 bg-amber-500/10 border border-amber-500/20 rounded-full text-amber-400 text-xs font-medium mb-4">
-                <span className="w-2 h-2 bg-amber-500 rounded-full animate-pulse" />
-                Demo Mode - Add products from admin panel
-              </span>
-              <h2 className="display-font text-4xl sm:text-5xl text-white mb-4">CHOOSE YOUR RIDE</h2>
-              <p className="text-dark-400 max-w-xl mx-auto">
-                Each scooter is designed for specific needs — from daily commuting to delivery operations.
-              </p>
+        // <section className="py-24 bg-dark-950">
+        //   <div className="max-w-[1400px] mx-auto px-6 lg:px-8">
+        //     <div className="text-center py-12">
+        //       <div className="text-dark-500 mb-2">No scooters found</div>
+        //     </div>
+        //   </div>
+        // </section>
+        <div className="text-center py-20">
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-dark-800 border border-white/10 rounded-lg mb-6">
+                <svg className="w-10 h-10 text-dark-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2">No products found</h3>
             </div>
-
-            <div className="space-y-24">
-              {demoScooters.map((scooter, index) => (
-                <motion.div
-                  key={scooter.id}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
-                    index % 2 === 1 ? 'lg:flex-row-reverse' : ''
-                  }`}
-                >
-                  {/* Image */}
-                  <div className={`relative ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
-                    <div className="relative aspect-[4/3] overflow-hidden">
-                      <img
-                        src={scooter.image}
-                        alt={scooter.name}
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-transparent to-transparent" />
-                    </div>
-                    <motion.div
-                      className={`absolute -bottom-6 ${index % 2 === 1 ? 'left-6' : 'right-6'} bg-dark-900 border border-white/10 p-6`}
-                      initial={{ opacity: 0, x: index % 2 === 1 ? -20 : 20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: 0.3 }}
-                    >
-                      <div className="text-3xl font-bold text-white">{formatPrice(scooter.price)}</div>
-                      <div className="text-xs uppercase tracking-wider text-dark-400">Starting price</div>
-                    </motion.div>
-                  </div>
-
-                  {/* Content */}
-                  <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
-                    <span className={`text-xs font-semibold uppercase tracking-widest mb-2 block ${
-                      scooter.color === 'ev' ? 'text-primary-400' :
-                      scooter.color === 'primary' ? 'text-primary-400' : 'text-amber-400'
-                    }`}>
-                      {scooter.tagline}
-                    </span>
-                    <h3 className="display-font text-4xl sm:text-5xl text-white mb-6">
-                      {scooter.name.toUpperCase()}
-                    </h3>
-
-                    {/* Specs Grid */}
-                    <div className="grid grid-cols-3 gap-4 mb-8">
-                      {Object.entries(scooter.specs).slice(0, 6).map(([key, value]) => (
-                        <div key={key} className="bg-dark-800/50 border border-white/5 p-4 text-center">
-                          <div className="text-lg font-bold text-white">{value}</div>
-                          <div className="text-xs uppercase tracking-wider text-dark-500">{key.replace(/([A-Z])/g, ' $1').trim()}</div>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Features */}
-                    <div className="flex flex-wrap gap-2 mb-8">
-                      {scooter.features.map((feature) => (
-                        <span key={feature} className="px-3 py-1 bg-dark-800 border border-white/5 text-dark-300 text-sm">
-                          {feature}
-                        </span>
-                      ))}
-                    </div>
-
-                    <div className="flex gap-4">
-                      <Link to={`/product/${scooter.id}`} className="btn-primary">
-                        View Details
-                      </Link>
-                      <Link to="/contact" className="btn-secondary">
-                        Book Test Ride
-                      </Link>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
       )}
 
       {/* Compare Section */}
-      <section className="py-24 bg-dark-900 border-t border-white/5">
+      {/* <section className="py-24 bg-dark-900 border-t border-white/5">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="display-font text-4xl sm:text-5xl text-white mb-4">COMPARE MODELS</h2>
@@ -446,7 +313,7 @@ const Scooters = () => {
             </table>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Benefits */}
       <section className="py-24 bg-dark-950">
