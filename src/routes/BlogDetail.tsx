@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Section from '../components/ui/Section'
 import SEO from '../components/SEO'
 import { blogApi, Blog } from '../api/blogs'
+import { APP_NAME } from '../lib/constants'
 
 const BlogDetail = () => {
   const { slug } = useParams<{ slug: string }>()
@@ -66,6 +67,27 @@ const BlogDetail = () => {
         title={blog.title}
         description={blog.excerpt || blog.title}
         keywords={`solar blog, ${blog.category || ''}, ${blog.tags?.join(', ') || ''}`}
+        structuredData={{
+          '@context': 'https://schema.org',
+          '@type': 'BlogPosting',
+          headline: blog.title,
+          description: blog.excerpt || blog.title,
+          image: blog.imageUrl,
+          datePublished: blog.publishedAt || blog.createdAt,
+          dateModified: blog.updatedAt || blog.createdAt,
+          author: blog.author
+            ? {
+                '@type': 'Person',
+                name:
+                  blog.author.firstName && blog.author.lastName
+                    ? `${blog.author.firstName} ${blog.author.lastName}`
+                    : blog.author.email,
+              }
+            : {
+                '@type': 'Organization',
+                name: APP_NAME,
+              },
+        }}
       />
       
       {/* Hero Section */}

@@ -1,24 +1,8 @@
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { useState, useEffect } from 'react'
 import SEO from '../components/SEO'
 
 const Ecosystem = () => {
-  const [showComingSoon, setShowComingSoon] = useState(false)
-
-  // Auto-hide toast
-  useEffect(() => {
-    if (showComingSoon) {
-      const timer = setTimeout(() => setShowComingSoon(false), 3000)
-      return () => clearTimeout(timer)
-    }
-  }, [showComingSoon])
-
-  const handleStoreClick = (e: React.MouseEvent) => {
-    e.preventDefault()
-    setShowComingSoon(true)
-  }
-
   const features = [
     {
       title: 'Find Charging Stations',
@@ -152,27 +136,12 @@ const Ecosystem = () => {
               </div>
 
               <div className="flex gap-4 relative">
-                <a href="#" onClick={handleStoreClick} className="block w-36 opacity-80 hover:opacity-100 transition-opacity cursor-pointer">
+                <a href="https://apps.apple.com/lk/app/lanka-ev-plus/id6762481492" target="_blank" rel="noopener noreferrer" className="block w-36 opacity-80 hover:opacity-100 transition-opacity cursor-pointer">
                   <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on App Store" className="w-full" />
                 </a>
-                <a href="#" onClick={handleStoreClick} className="block w-36 opacity-80 hover:opacity-100 transition-opacity cursor-pointer">
+                <a href="https://play.google.com/store/apps/details?id=com.lankaevplus.app" target="_blank" rel="noopener noreferrer" className="block w-36 opacity-80 hover:opacity-100 transition-opacity cursor-pointer">
                   <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" className="w-full" />
                 </a>
-
-                {/* Coming Soon Toast */}
-                <AnimatePresence>
-                  {showComingSoon && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                      className="absolute left-0 -bottom-16 bg-dark-800 border border-primary-500/30 text-white text-sm px-4 py-2.5 rounded-lg shadow-xl shadow-primary-500/10 whitespace-nowrap z-20 flex items-center gap-2"
-                    >
-                      <span className="text-primary-400">⚡</span>
-                      Will be available for your service soon
-                    </motion.div>
-                  )}
-                </AnimatePresence>
               </div>
             </motion.div>
 
